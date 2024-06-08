@@ -122,7 +122,6 @@ const Movie = () => {
           ))}
         </Swiper>
       </MovieModal>
-      <h3 className=" text-white text-5xl">proximo contenido aqui</h3>
     </div>
   );
 };
