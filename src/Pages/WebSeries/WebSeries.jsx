@@ -2,31 +2,56 @@ import React, { useRef, useState } from "react";
 import { FaRegCirclePlay, FaRegCirclePause } from "react-icons/fa6";
 
 const WebSeries = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showPauseButton, setShowPauseButton] = useState(false);
-  const videoRef = useRef(null);
+  const [videoState, setVideoState] = useState({
+    video1: { isPlaying: false, showPauseButton: false },
+    video2: { isPlaying: false, showPauseButton: false },
+    video3: { isPlaying: false, showPauseButton: false },
+  });
 
-  const handlePlayPause = () => {
+  const videoRefs = {
+    video1: useRef(null),
+    video2: useRef(null),
+    video3: useRef(null),
+  };
+
+  const handlePlayPause = (videoKey) => {
+    const currentVideo = videoRefs[videoKey].current;
+    const isPlaying = videoState[videoKey].isPlaying;
+
     if (isPlaying) {
-      videoRef.current.pause();
+      currentVideo.pause();
     } else {
-      videoRef.current.play();
+      currentVideo.play();
     }
-    setIsPlaying(!isPlaying);
+
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { ...prevState[videoKey], isPlaying: !isPlaying },
+    }));
   };
 
-  const handleVideoEnd = () => {
-    setIsPlaying(false);
-    setShowPauseButton(false);
+  const handleVideoEnd = (videoKey) => {
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { isPlaying: false, showPauseButton: false },
+    }));
   };
 
-  const handleVideoClick = () => {
+  const handleVideoClick = (videoKey) => {
+    const isPlaying = videoState[videoKey].isPlaying;
+
     if (isPlaying) {
-      setShowPauseButton(true);
-      videoRef.current.pause();
-      setIsPlaying(false);
+      setVideoState((prevState) => ({
+        ...prevState,
+        [videoKey]: { ...prevState[videoKey], showPauseButton: true },
+      }));
+      videoRefs[videoKey].current.pause();
+      setVideoState((prevState) => ({
+        ...prevState,
+        [videoKey]: { ...prevState[videoKey], isPlaying: false },
+      }));
     } else {
-      handlePlayPause();
+      handlePlayPause(videoKey);
     }
   };
 
@@ -66,25 +91,28 @@ const WebSeries = () => {
           <div className="my-5">
             <div className="relative flex justify-center items-center">
               <video
-                ref={videoRef}
-                src="prueba.mp4"
+                ref={videoRefs.video1}
+                src="20fox.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
-                onEnded={handleVideoEnd}
-                onClick={handleVideoClick}
+                onEnded={() => handleVideoEnd('video1')}
+                onClick={() => handleVideoClick('video1')}
               />
-              {!isPlaying && !showPauseButton && (
+              {!videoState.video1.isPlaying && !videoState.video1.showPauseButton && (
                 <button
-                  onClick={handlePlayPause}
+                  onClick={() => handlePlayPause('video1')}
                   className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
                   <FaRegCirclePlay className="text-7xl xl:text-9xl z-50" />
                 </button>
               )}
-              {showPauseButton && (
+              {videoState.video1.showPauseButton && (
                 <button
                   onClick={() => {
-                    setShowPauseButton(false);
-                    handlePlayPause();
+                    setVideoState((prevState) => ({
+                      ...prevState,
+                      video1: { ...prevState.video1, showPauseButton: false },
+                    }));
+                    handlePlayPause('video1');
                   }}
                   className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
@@ -116,25 +144,28 @@ const WebSeries = () => {
           <div className="my-5">
             <div className="relative flex justify-center items-center">
               <video
-                ref={videoRef}
-                src="prueba.mp4"
+                ref={videoRefs.video2}
+                src="20fox.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
-                onEnded={handleVideoEnd}
-                onClick={handleVideoClick}
+                onEnded={() => handleVideoEnd('video2')}
+                onClick={() => handleVideoClick('video2')}
               />
-              {!isPlaying && !showPauseButton && (
+              {!videoState.video2.isPlaying && !videoState.video2.showPauseButton && (
                 <button
-                  onClick={handlePlayPause}
+                  onClick={() => handlePlayPause('video2')}
                   className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
                   <FaRegCirclePlay className="text-7xl xl:text-9xl z-50" />
                 </button>
               )}
-              {showPauseButton && (
+              {videoState.video2.showPauseButton && (
                 <button
                   onClick={() => {
-                    setShowPauseButton(false);
-                    handlePlayPause();
+                    setVideoState((prevState) => ({
+                      ...prevState,
+                      video2: { ...prevState.video2, showPauseButton: false },
+                    }));
+                    handlePlayPause('video2');
                   }}
                   className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
@@ -163,25 +194,28 @@ const WebSeries = () => {
           <div className="my-5">
             <div className="relative flex justify-center items-center">
               <video
-                ref={videoRef}
-                src="prueba.mp4"
+                ref={videoRefs.video3}
+                src="20fox.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
-                onEnded={handleVideoEnd}
-                onClick={handleVideoClick}
+                onEnded={() => handleVideoEnd('video3')}
+                onClick={() => handleVideoClick('video3')}
               />
-              {!isPlaying && !showPauseButton && (
+              {!videoState.video3.isPlaying && !videoState.video3.showPauseButton && (
                 <button
-                  onClick={handlePlayPause}
+                  onClick={() => handlePlayPause('video3')}
                   className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
                   <FaRegCirclePlay className="text-7xl xl:text-9xl z-50" />
                 </button>
               )}
-              {showPauseButton && (
+              {videoState.video3.showPauseButton && (
                 <button
                   onClick={() => {
-                    setShowPauseButton(false);
-                    handlePlayPause();
+                    setVideoState((prevState) => ({
+                      ...prevState,
+                      video3: { ...prevState.video3, showPauseButton: false },
+                    }));
+                    handlePlayPause('video3');
                   }}
                   className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
                 >
