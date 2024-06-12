@@ -40,3 +40,26 @@ body {
   display: block;
   width: 50%;
 }
+
+.btn{
+  overflow: hidden;
+}
+
+.btn span{
+  position: relative;
+  display: inline-block;
+  transition: transform 0.5s;
+  text-shadow: 0 35px #fff;
+  transform: translateY(0px);
+}
+span.hover{
+  color:red;
+}
+
+.btn:hover span.hover{
+  transform: translateY(-35px);
+}
+.btn span.hover{
+  transform: translateY(-35px);
+}
+

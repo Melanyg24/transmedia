@@ -48,7 +48,7 @@ const Book = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className=" flex flex-col justify-center items-center bg-[url('/bg-main-reverse.png')] bg-cover bg-center h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[url('/bg-main-reverse.png')] bg-cover bg-center bg-fixed">
       <div className="flex flex-col justify-center items-center mt-[-10px]">
         <h1 className="text-2xl md:text-7xl xl:text-6xl 2xl:text-8xl md:tracking-wide text-[#D31010] text-shadow-white text-center font-bold mt-20 px-2 ">
           AMARA LA MUÑECA POSEIDA:{" "}

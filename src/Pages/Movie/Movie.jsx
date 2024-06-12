@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import MovieModal from "../../components/Modal/MovieModal";
 
@@ -41,19 +39,18 @@ const Movie = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className=" relative flex flex-col justify-center items-center bg-[url('/bg-main-reverse.png')] bg-cover bg-center h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[url('/bg-main-reverse.png')] bg-cover bg-center bg-fixed">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-3xl md:text-7xl xl:text-6xl 2xl:text-8xl md:tracking-wide text-[#D31010] text-shadow-white text-center font-bold pt-20">
           AMARA LA MUÑECA POSEIDA:{" "}
           <span className="text-[#D31010] text-shadow-white">EL ORIGEN</span>
         </h1>
       </div>
-      <div className="flex flex-col md:flex-row items-center p-4 m-4 rounded-2xl bg-[#00000080] backdrop-blur-sm md:w-[80%] ">
-        //{" "}
+      <div className="flex flex-col md:flex-row items-center p-4 m-4 rounded-2xl bg-[#00000080] backdrop-blur-sm md:w-[80%]">
         <img
           src="/cd-cover.png"
           alt="movie"
-          className=" w-[50%] md:w-[50%] floating-image"
+          className="w-[50%] md:w-[50%] floating-image"
         />
         <p className="text-white text-base text-justify md:text-4xl text-shadow-red md:w-full xl:text-2xl 2xl:text-4xl">
           Un grupo de amigos, Iván Suárez, Valeria García y Jhanna Torres,
@@ -71,56 +68,39 @@ const Movie = () => {
           Personajes
         </button>
       </div>
+      <img src="/doll.jpg" alt="doll" className="w-1/2 mb-8" />
       <MovieModal open={open} onClose={() => setOpen(false)}>
-        {/* <div className="grid grid-cols-2 gap-4 xl:flex xl:flex-wrap xl:justify-center xl:items-center">
-              {images.map((image, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col justify-start items-center rounded-xl mt-1 ${
-                    index === images.length - 1 ? "col-span-2" : ""
-                  }`}
-                >
-                  <img
-                    src={image.image}
-                    alt={image.name}
-                    className="w-[80px] h-[80px] xl:w-[180px] xl:h-[200px] object-cover rounded-xl border border-red-900"
-                  />
-                  <h2 className="text-[#D31010] text-base md:text-2xl text-center">
-                    {image.name}
-                  </h2>
-                </div>
-              ))}
-            </div> */}
-
-        <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          pagination={true}
-          modules={[EffectCoverflow, Pagination]}
-          className="mySwiper"
-        >
-          {images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={img.image}
-                alt={img.name}
-                className="w-[180px] h-[180px] xl:w-[180px] xl:h-[200px] object-cover rounded-xl border border-red-900"
-              />
-              <h2 className="text-[#D31010] text-4xl md:text-3xl mt-5  text-center tracking-widest">
-                {img.name}
-              </h2>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="overflow-auto max-h-[80vh]">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={true}
+            modules={[EffectCoverflow, Pagination]}
+            className="mySwiper"
+          >
+            {images.map((img, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={img.image}
+                  alt={img.name}
+                  className="w-[180px] h-[180px] xl:w-[180px] xl:h-[200px] object-cover rounded-xl border border-red-900"
+                />
+                <h2 className="text-[#D31010] text-4xl md:text-3xl mt-5 text-center tracking-widest">
+                  {img.name}
+                </h2>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </MovieModal>
     </div>
   );

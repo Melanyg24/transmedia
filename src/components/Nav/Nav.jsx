@@ -13,9 +13,21 @@ const Nav = () => {
 
   return (
     <nav className="w-full flex justify-between items-center bg-[#00000080] backdrop-blur-sm px-8 fixed z-50 ">
-      <Link to="/">
-        <img src="/terror.png" alt="logo" className="w-20 " />
-      </Link>
+      <div className="flex w-[100%] xl:w-[40%]">
+        <div className="w-[30%]">
+          <Link to="/">
+            <img src="/terror.png" alt="logo" className="w-12 xl:w-20" />
+          </Link>
+        </div>
+        <div className="flex w-[70%] gap-7">
+          <Link to="https://www.facebook.com/" target="_blank">
+            <img src="/facebook_icon.png" alt="logo" className="w-12 xl:w-20 transform active:scale-90 transition-transform ease-in-out duration-300" />
+          </Link>
+          <Link to="https://www.tiktok.com/" target="_blank">
+            <img src="/tiktok_icon.png" alt="logo" className="w-12 xl:w-20 transform active:scale-90 transition-transform ease-in-out duration-300" />
+          </Link>
+        </div>
+      </div>
       <ul className="hidden md:flex text-2xl">
         <li className="list-none">
           <NavLink
