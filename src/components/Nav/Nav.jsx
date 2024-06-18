@@ -20,10 +20,10 @@ const Nav = () => {
           </Link>
         </div>
         <div className="flex w-[70%] gap-7">
-          <Link to="https://www.facebook.com/" target="_blank">
+          <Link to="https://www.facebook.com/share/SxNw6xYSjPrVqMxw/?mibextid=LQQJ4d" target="_blank">
             <img src="/facebook_icon.png" alt="logo" className="w-12 xl:w-20 transform active:scale-90 transition-transform ease-in-out duration-300" />
           </Link>
-          <Link to="https://www.tiktok.com/" target="_blank">
+          <Link to="https://www.tiktok.com/@producciones_sky" target="_blank">
             <img src="/tiktok_icon.png" alt="logo" className="w-12 xl:w-20 transform active:scale-90 transition-transform ease-in-out duration-300" />
           </Link>
         </div>
