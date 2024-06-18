@@ -68,7 +68,6 @@ const Movie = () => {
           Personajes
         </button>
       </div>
-      <img src="/doll.jpg" alt="doll" className="w-1/2 mb-8" />
       <MovieModal open={open} onClose={() => setOpen(false)}>
         <div className="overflow-auto max-h-[80vh]">
           <Swiper
