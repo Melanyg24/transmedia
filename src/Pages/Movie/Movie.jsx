@@ -168,7 +168,7 @@ const Movie = () => {
       </MovieModal>
       <div className="xl:w-[80%] xl:mt-14 mt-5 flex flex-col justify-center items-center">
         <h1 className="text-[#D31010] text-[25px] xl:text-[50px] xl:text-shadow-white w-full text-center xl:text-center md:text-4xl text-shadow-black xl:text-5xl 2xl:text-4xl">
-          Trailer
+          Teaser
         </h1>
         <div className="flex xl:flex-row flex-col">
           <div className="my-5">
