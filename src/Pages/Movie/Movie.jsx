@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { FaRegCirclePlay, FaRegCirclePause } from "react-icons/fa6";
+
 import MovieModal from "../../components/Modal/MovieModal";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,6 +16,69 @@ import "./styles.css";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const Movie = () => {
+  const [videoState, setVideoState] = useState({
+    video1: { isPlaying: false, showPauseButton: false },
+  });
+
+  const videoRefs = {
+    video1: useRef(null),
+  };
+
+  const handlePlayPause = (videoKey) => {
+    const currentVideo = videoRefs[videoKey].current;
+    const isPlaying = videoState[videoKey].isPlaying;
+
+    if (isPlaying) {
+      currentVideo.pause();
+    } else {
+      currentVideo.play();
+    }
+
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { ...prevState[videoKey], isPlaying: !isPlaying },
+    }));
+  };
+
+  const handleVideoEnd = (videoKey) => {
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { isPlaying: false, showPauseButton: false },
+    }));
+  };
+
+  const handleVideoClick = (videoKey) => {
+    const isPlaying = videoState[videoKey].isPlaying;
+
+    if (isPlaying) {
+      setVideoState((prevState) => ({
+        ...prevState,
+        [videoKey]: { ...prevState[videoKey], showPauseButton: true },
+      }));
+      videoRefs[videoKey].current.pause();
+      setVideoState((prevState) => ({
+        ...prevState,
+        [videoKey]: { ...prevState[videoKey], isPlaying: false },
+      }));
+    } else {
+      handlePlayPause(videoKey);
+    }
+  };
+
+  const handleVideoPause = (videoKey) => {
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { ...prevState[videoKey], isPlaying: false },
+    }));
+  };
+
+  const handleVideoPlay = (videoKey) => {
+    setVideoState((prevState) => ({
+      ...prevState,
+      [videoKey]: { ...prevState[videoKey], isPlaying: true },
+    }));
+  };
+
   const images = [
     {
       name: "Iván Suárez",
@@ -101,6 +166,48 @@ const Movie = () => {
           </Swiper>
         </div>
       </MovieModal>
+      <div className="xl:w-[80%] xl:mt-14 mt-5 flex flex-col justify-center items-center">
+        <h1 className="text-[#D31010] text-[25px] xl:text-[50px] xl:text-shadow-white w-full text-center xl:text-center md:text-4xl text-shadow-black xl:text-5xl 2xl:text-4xl">
+          Trailer
+        </h1>
+        <div className="flex xl:flex-row flex-col">
+          <div className="my-5">
+            <div className="relative flex justify-center items-center">
+              <video
+                ref={videoRefs.video1}
+                src="teaser.mp4"
+                controls
+                className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
+                onEnded={() => handleVideoEnd("video1")}
+                onPause={() => handleVideoPause("video1")}
+                onPlay={() => handleVideoPlay("video1")}
+              />
+              {!videoState.video1.isPlaying && !videoState.video1.showPauseButton && (
+                <button
+                  onClick={() => handlePlayPause("video1")}
+                  className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
+                >
+                  <FaRegCirclePlay className="text-7xl xl:text-9xl z-50" />
+                </button>
+              )}
+              {videoState.video1.showPauseButton && (
+                <button
+                  onClick={() => {
+                    setVideoState((prevState) => ({
+                      ...prevState,
+                      video1: { ...prevState.video1, showPauseButton: false },
+                    }));
+                    handlePlayPause("video1");
+                  }}
+                  className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-2xl rounded-3xl"
+                >
+                  <FaRegCirclePause className="text-7xl xl:text-9xl z-50" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
