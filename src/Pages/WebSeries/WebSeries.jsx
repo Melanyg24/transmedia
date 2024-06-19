@@ -158,7 +158,7 @@ const WebSeries = () => {
               <video
                 ref={videoRefs.video2}
                 controls
-                src="20fox.mp4"
+                src="proximamente.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
                 onEnded={() => handleVideoEnd('video2')}
                 onPause={() => handleVideoPause('video2')}
@@ -213,7 +213,7 @@ const WebSeries = () => {
               <video
                 ref={videoRefs.video3}
                 controls
-                src="20fox.mp4"
+                src="proximamente.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
                 onEnded={() => handleVideoEnd('video3')}
                 onPause={() => handleVideoPause('video3')}
