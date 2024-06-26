@@ -205,7 +205,7 @@ const WebSeries = () => {
 
       <div className="xl:w-[80%] xl:mt-14 mt-5">
         <h1 className="text-[#D31010] text-[25px] xl:text-[30px] w-full text-center xl:text-justify md:text-4xl text-shadow-black xl:text-5xl 2xl:text-4xl">
-          Websodio 03: La verda oculta
+          Websodio 03: La injusticia
         </h1>
         <div className="flex xl:flex-row flex-col">
           <div className="my-5">
@@ -213,7 +213,7 @@ const WebSeries = () => {
               <video
                 ref={videoRefs.video3}
                 controls
-                src="proximamente.mp4"
+                src="web03.mp4"
                 className="w-[90%] max-w-[750px] lg:w-[750px] xl:w-[500px] 2xl:w-[750px] rounded-3xl"
                 onEnded={() => handleVideoEnd('video3')}
                 onPause={() => handleVideoPause('video3')}
