@@ -6,6 +6,7 @@ import Movie from "./Pages/Movie/Movie";
 import Book from "./Pages/Book/Book";
 import VideoGame from "./Pages/VideoGame/VideoGame";
 import Nav from "./components/Nav/Nav";
+import TimeLine from "./Pages/Timeline/TimeLine";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/movie" element={<Movie />} />
       <Route path="/book" element={<Book />} />
       <Route path="/videogame" element={<VideoGame />} />
+      <Route path="/timeline" element={<TimeLine />} />
     </Routes>
    </div>
   );

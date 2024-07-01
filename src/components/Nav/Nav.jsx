@@ -69,6 +69,14 @@ const Nav = () => {
             Juego
           </NavLink>
         </li>
+        <li className="list-none">
+          <NavLink
+            className="text-white p-2 mx-2 rounded-lg transition duration-200 ease"
+            to="/timeline"
+          >
+            TimeLine
+          </NavLink>
+        </li>
       </ul>
       {/* Hamb or Close Icon */}
       <div className="md:hidden z-10 text-[#D31010]" onClick={handleClick}>
