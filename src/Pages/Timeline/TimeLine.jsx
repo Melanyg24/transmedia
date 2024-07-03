@@ -19,7 +19,11 @@ const ExperienceCard = ({ exp }) => (
       color: "#fff",
     }}
     contentArrowStyle={{ borderRight: "10px solid  #D31010" }}
-    date={<span style={{ fontSize: "30px", color:"#fff", marginTop:"20px" }}>{exp.date}</span>}
+    date={
+      <span style={{ fontSize: "30px", color: "#fff", marginTop: "20px" }}>
+        {exp.date}
+      </span>
+    }
     icon={
       <div className="flex justify-center items-center w-full h-full bg-white rounded-full">
         <img
@@ -32,9 +36,29 @@ const ExperienceCard = ({ exp }) => (
   >
     <div>
       <img className="w-[40%] mx-auto" src={exp.img} alt="" />
-      <h3 className="text-center text-white text-[40px] font-bold text-shadow-black">" {exp.title} "</h3>
-      <h3 className="text-white text-shadow-black text-center text-[30px]">{exp.company_name}</h3>
-      <h3 className="text-[25px] text-shadow-black text-center">{exp.points}</h3>
+      <h3 className="text-center text-white text-[40px] font-bold text-shadow-black">
+        " {exp.title} "
+      </h3>
+      <h3 className="text-white text-shadow-black text-center text-[30px]">
+        {exp.company_name}
+      </h3>
+      <h3 className="text-[25px] text-shadow-black text-center">
+        {exp.points}
+      </h3>
+      <ul>
+        {exp.capitulos &&
+          exp.contenido &&
+          exp.capitulos.map((capitulo, index) => (
+            <React.Fragment key={index}>
+              <div className=" py-5">
+                <li className="text-[25px] text-shadow-black text-center">{capitulo}</li>
+                <li className="text-[19px] text-shadow-black">
+                  {exp.contenido[index]}
+                </li>
+              </div>
+            </React.Fragment>
+          ))}
+      </ul>
     </div>
   </VerticalTimelineElement>
 );
